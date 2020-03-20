@@ -14,40 +14,54 @@ package Mandatory3;
 // M antal linjer, hver linje med to tal skilt af mellemrum
 
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Combusting {
 
-    public void combust() {
-        Scanner tastatur = new Scanner(System.in);
-        int n = Integer.parseInt(tastatur.nextLine());
-
-        int m = Integer.parseInt(tastatur.nextLine());
-
-        int[] Ingredients = new int[n];
-
-        //skal putte ingredienserne ind i array
-        for(int i = 0; i<m;i++){
-            String string = tastatur.nextLine();
-            string.trim();
-            Ingredients[i] = Integer.parseInt(string.charAt(0));
-            Ingredients[i+1] = Integer.parseInt(string.charAt(1));
-        }
-
-        //printer array
-        for(int i = 0; i<n;i++){
-            System.out.println(Ingredients[i]);
-        }
-
-
-    }
-
-
     public static void main(String[] args) {
-        Combusting c = new Combusting();
-        c.combust();
+
+//////// Input
+        Scanner tastatur = new Scanner(System.in);
+        int numOfIngredients = tastatur.nextInt();          //n
+        int numOfBoomPairs = tastatur.nextInt();            //m
+
+        // Array fra 0 til det højeste nr. indgredient
+        int[] indgredients = new int[numOfIngredients];
+        int[] naboListe = new int[numOfIngredients];
+        for (int i =0; i<numOfIngredients; i++){
+            indgredients[i]=i;                              // Dette er alle ingredienser, som skal tjekkes om de siger boom.
+            naboListe[i]=i;                                 // Dette er alle ingredienser, som skal ind på nabolisten. Senere kommer deres naboer ind på
+
+        }
+
+        //
+        LinkedList<Integer> boomListe = new LinkedList<>();
+
+        for (int i =0; i<numOfBoomPairs*2; i++){
+            naboListe.
+        }
+
+//////// Sorter Indgredienser
+
+
+//////// Tjek for ulovlige naboer
+
+        boolean[] potte1 = new boolean[numOfIngredients]; // initialiserer vores potter
+        boolean[] potte2 = new boolean[numOfIngredients];
+
+
+
 
     }
+
+
+//    public static void main(String[] args) {
+//        Combusting c = new Combusting();
+//        c.combust();
+//
+//    }
 
 
 }
