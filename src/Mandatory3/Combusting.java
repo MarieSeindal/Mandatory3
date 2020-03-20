@@ -13,7 +13,6 @@ package Mandatory3;
 // M - antal parvise exploderende ingredienser
 // M antal linjer, hver linje med to tal skilt af mellemrum
 
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Scanner;
 
@@ -27,10 +26,18 @@ public class Combusting {
 
         int[] Ingredients = new int[n];
 
-        for(int i = 0; i<Ingredients.length;i++){
-
+        //skal putte ingredienserne ind i array
+        for(int i = 0; i<m;i++){
+            String string = tastatur.nextLine();
+            string.trim();
+            Ingredients[i] = Integer.parseInt(string.charAt(0));
+            Ingredients[i+1] = Integer.parseInt(string.charAt(1));
         }
 
+        //printer array
+        for(int i = 0; i<n;i++){
+            System.out.println(Ingredients[i]);
+        }
 
 
     }
