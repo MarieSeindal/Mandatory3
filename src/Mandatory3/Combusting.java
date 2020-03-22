@@ -1,12 +1,5 @@
 
 package Mandatory3;
-//algoritme:
-//der er to boolean arrays af længde n
-// tjek for det første tal-input om boolean værdien er 0 i det første array
-// hvis den er 0 så sæt den til 1 og sæt andet input tals tilsvarende booleanske værdi i array 2 til 1
-// gentag
-// til sidst: hvis samme talværdi er sat til 1 i begge arrays så returner BOOM
-// ellers returner de tilsvarende talværdier
 
 //input er:
 // N - antal ingredienser
@@ -19,125 +12,158 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Combusting {
+    static class Graph{
+        int numOfIngredients;
+        LinkedList<Integer> adjList[];
+
+        Graph(int numOfIngredients){
+            this.numOfIngredients = numOfIngredients;
+            //definerer størrelsen
+            adjList = new LinkedList[numOfIngredients];
+
+            for(int i = 0; i < numOfIngredients; i++){
+                adjList[i] = new LinkedList<>();
+            }
+        }
+    }
+
+    static void addEdge(Graph graph, int src, int dest){
+        graph.adjList[src].add(dest);
+        graph.adjList[dest].add(src);
+    }
+
+    static void printGraph(Graph graph){
+        for(int m = 0; m<graph.numOfIngredients; m++){
+            System.out.print("adjecency list: "+ m);
+
+            for(Integer p: graph.adjList[m]){
+                System.out.print(" -> "+p);
+            }
+
+            System.out.println("\n");
+        }
+    }
+
 
     public static void main(String[] args) {
 
 //////// Input
-        Scanner tastatur = new Scanner(System.in);
-        int numOfIngredients = tastatur.nextInt();          //n
-        int numOfBoomPairs = tastatur.nextInt();            //m
+     /*   Scanner tastatur2 = new Scanner(System.in);
+        int numOfIngredients = tastatur2.nextInt();          //n
+        int numOfBoomPairs = tastatur2.nextInt();  */          //m
+///// TEstDATA
+
+        int numOfIngredients = 6;          //n
+        int numOfBoomPairs = 6;
+        //int[][] boomInput = {{0,1,2,3,1,3},{1,2,3,4,5,5}};
+//
+//        Scanner tastatur2 = new Scanner(System.in);
+//        Graph graph = new Graph(numOfIngredients);
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+
+        Graph graph = new Graph(numOfIngredients);
+        addEdge(graph, 0,1);
+        addEdge(graph, 1,2);
+        addEdge(graph, 2,3);
+        addEdge(graph, 3,4);
+        addEdge(graph, 1,5);
+        addEdge(graph, 3,5);
+
+        printGraph(graph);
 
         // Array fra 0 til det højeste nr. indgredient
         int[] indgredients = new int[numOfIngredients];
         int[] naboListe = new int[numOfIngredients - 1];
 
         // generer 2d array med boom-par
+        /*
         int[][] boomInput = new int[2][numOfBoomPairs];
-        for (int i = 0; i < numOfBoomPairs; i++) {
+        int numOfIngredients = tastatur.nextInt();          //n
+        int numOfBoomPairs = tastatur.nextInt();   for (int i = 0; i < numOfBoomPairs; i++) {
             boomInput[0][i] = tastatur.nextInt();
             boomInput[1][i] = tastatur.nextInt();
-        }
+        }*/
+
 
         // generer Adjacency Matrix, med true på ulovlige kombinationer
-        boolean[][] boomTable = new boolean[numOfIngredients][numOfIngredients];
-        for (int i = 0; i < numOfIngredients; i++) {
-            for (int j = 0; j < numOfIngredients; j++) {
-                boomTable[i][j] = false;
-            }
-        }
-        for (int i = 0; i < numOfBoomPairs; i++) {
-            boomTable[boomInput[0][i]] [boomInput[1][i]] = true;
-            boomTable[boomInput[1][i]] [boomInput[0][i]] = true;
-        }
+//        boolean[][] boomTable = new boolean[numOfIngredients][numOfIngredients];
+//        for (int i = 0; i < numOfIngredients; i++) {
+//            for (int j = 0; j < numOfIngredients; j++) {
+//                boomTable[i][j] = false;
+//            }
+//        }
+//        for (int i = 0; i < numOfBoomPairs; i++) {
+//            boomTable[boomInput[0][i]] [boomInput[1][i]] = true;
+//            boomTable[boomInput[1][i]] [boomInput[0][i]] = true;
+//        }
 
-        for (int i = 0; i < numOfIngredients; i++) { //todo
-            for (int j = 0; j < numOfIngredients; j++) {
-                System.out.print(boomTable[i][j] + " ");
-            }
-            System.out.println("");
-        }
+        //det stemmer
+//        for (int i = 0; i < numOfIngredients; i++) { //todo
+//            for (int j = 0; j < numOfIngredients; j++) {
+//                System.out.print(boomTable[i][j] + " ");
+//            }
+//            System.out.println("");
+//        }
 
 
 
-        for (int i = 0; i < numOfIngredients; i++) { //todo
-            for (int j = 0; j < numOfIngredients; j++) { //todo
-                //System.out.println("BoomTable efter boom markering: " + boomTable[i][j] + ", index: " + i + ";" + j); //todo
-            } //todo
-        } // todo
+//        for (int i = 0; i < numOfIngredients; i++) { //todo
+//            for (int j = 0; j < numOfIngredients; j++) { //todo
+//                //System.out.println("BoomTable efter boom markering: " + boomTable[i][j] + ", index: " + i + ";" + j); //todo
+//            } //todo
+//        } // todo
 
 
 //////// Tjek for ulovlige naboer
 
-        boolean[] potte1 = new boolean[numOfIngredients]; // initialiserer vores potter
+        boolean[] potte1 = new boolean[numOfIngredients]; // initialiserer vores potter, de er pr default false
         boolean[] potte2 = new boolean[numOfIngredients];
 
-        for (int i = 0; i < numOfIngredients; i++) { //todo Irrelevant, da den er flase før jeg sætter den til false???
-            //System.out.println("Potte tjek1, potte 1: " + potte1[i] + ", potte 2: " + potte2[i] + ", index: " + i);
-            potte1[i] = false;
-            potte2[i] = false;
-            //System.out.println("Potte tjek2, potte 1: " + potte1[i] + ", potte 2: " + potte2[i] + ", index: " + i);
 
-        }
 
         boolean boom = false; // Vi er ikke eksploderet endnu ;-)
 
-        for (int i = 0; i < numOfIngredients; i++) { //Tjek hver ingrediens
 
-            //Tjek potte 1
-            //Sammenlig indgredient i med boomTable. Den er true hvor der er ulovlige forbindelser
-            for (int j = 0; j < numOfIngredients; j++) { // tjek for hver potentiel nabo (aka hver ingrediens)
 
-                boolean notPotte1 = false; // if true, then its not in potte 1
-                for (j = j; j < numOfIngredients; j++) { // potte 1
-
-                    if (boomTable[i][j] || boomTable[j][i]) { //Hvis den er der, skal den ud af for-loopet og fortsætte til potte 2
-                        System.out.println(i + " har ugyldig nabo: " + j);
-                        notPotte1 = true;
-                        j++;
-                        break;
-                    }
-                    // Da vi lægger dem i potten i kronologisk rækkefølge, så behøver vi ikke tjekke efer den nabo vi er nået til, (Ny linje)
-                    // da vi ikke har putttet efterfølge naboer i endnu.
-                    else if (j == i) {
-                        potte1[i] = true; // Hvis den ikke finder en ulovlig nabo, så "Put den i potten"
-                        System.out.println("Potte 1 tilføjet indegrediens: " + i); //todo
-                        break;
-                    }
-                    else if(!notPotte1){
-                        potte1[i] = true; // Hvis den ikke finder en ulovlig nabo, så "Put den i potten"
-                        System.out.println("Potte 1 tilføjet indegrediens: " + i); //todo
-                        break;
-                    }
-
+////////Check naboerne
+        for(int m = 0; m<graph.numOfIngredients; m++){
+            for(Integer p: graph.adjList[m]){
+                //hvis p ikke er i potte1
+                if(potte1[p] == false){
+                    System.out.print("for "+m+" :");
+                    System.out.print("naboen "+p+" er ikke i potte1");
+                    System.out.println(" ======= putter "+m+" i potte1");
+                    potte1[m] = true;
+                    break;
+                    //putter ingredienserne i
                 }
 
-                if (!potte1[i]) { // Hvis den ikke er i potte 1, så tjek her her
-                    for (j = j; j < numOfIngredients; j++) {
-                        if (boomTable[i][j] || boomTable[j][i]) { //Hvis den også er her, skal den ud af for-loopet og BOOM! Da der ikke er nogen mulig plads til den.
-
-                            System.out.println(i + " har ugyldig nabo: " + j);
-                            boom = true; // Sætter boom til true
-                            System.out.println("BOOM!");
-                            break;
-
-                        }
-                        if (!boom) {
-                            potte2[i] = true; // Hvis den ikke finder en ulovlig nabo, så "Put den i potten"
-                            System.out.println("Potte 2 tilføjet indgrediens: " + i); //todo
-                            break;
-                        }
-                    }
-
+                //hvis p er i potte1 men ikke er i potte2
+                else if(potte2[p] == false){
+                    System.out.print("for "+m+" :");
+                    System.out.print("naboen "+p+" er ikke i potte2");
+                    System.out.println(" ======= putter "+m+" i potte2");
+                    //putter ingredienserne i
+                    potte2[m] = true;
+                    break;
                 }
-                break;
+                //eller er p i begge potter  == BOOM
+                else if(potte1[p] ==true && potte2[p] == true){
+                    System.out.print("for "+m+" :");
+                    System.out.println("BOOM");
+                    //putter ingredienserne i
+                    break;
+                }
             }
-            //Tjek om boom er opstået, hvis ja bryd ud
-            if (boom)
-                break;
-
         }
 
-////////Print resultat
+
+
 
         //Generer resultat potte 1
         String potte1Res = "";
