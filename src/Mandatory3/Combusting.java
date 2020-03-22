@@ -48,31 +48,31 @@ public class Combusting {
     public static void main(String[] args) {
 
 //////// Input
-     /*   Scanner tastatur2 = new Scanner(System.in);
+        Scanner tastatur2 = new Scanner(System.in);
         int numOfIngredients = tastatur2.nextInt();          //n
-        int numOfBoomPairs = tastatur2.nextInt();  */          //m
+        int numOfBoomPairs = tastatur2.nextInt();            //m
 ///// TEstDATA
 
-        int numOfIngredients = 6;          //n
-        int numOfBoomPairs = 6;
-        //int[][] boomInput = {{0,1,2,3,1,3},{1,2,3,4,5,5}};
-//
-//        Scanner tastatur2 = new Scanner(System.in);
-//        Graph graph = new Graph(numOfIngredients);
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
-//        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        //int numOfIngredients = 6;          //n
+        //int numOfBoomPairs = 6;
 
+
+        //Scanner tastatur2 = new Scanner(System.in);
         Graph graph = new Graph(numOfIngredients);
-        addEdge(graph, 0,1);
-        addEdge(graph, 1,2);
-        addEdge(graph, 2,3);
-        addEdge(graph, 3,4);
-        addEdge(graph, 1,5);
-        addEdge(graph, 3,5);
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+        addEdge(graph, tastatur2.nextInt(),tastatur2.nextInt());
+
+//        Graph graph = new Graph(numOfIngredients);
+//        addEdge(graph, 0,1);
+//        addEdge(graph, 1,2);
+//        addEdge(graph, 2,3);
+//        addEdge(graph, 3,4);
+//        addEdge(graph, 1,5);
+//        addEdge(graph, 3,5);
 
         printGraph(graph);
 
